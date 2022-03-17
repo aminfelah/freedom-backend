@@ -14,7 +14,7 @@ const url = process.env.MONGO_URL || 'localhost';
   providers: [AppService],
   imports: [
     MongooseModule.forRoot(
-      `mongodb://${url}:27017?serverSelectionTimeoutMS=2000`,
+      `mongodb://root:pass12345@${url}:27017?serverSelectionTimeoutMS=2000`,
     ),GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql'
