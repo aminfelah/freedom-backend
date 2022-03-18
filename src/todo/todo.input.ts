@@ -1,13 +1,13 @@
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class CreateUserInput {
+export class CreateTodoInput {
   @Field()
-  name: string;
+  todoDate: string;
 
   @Field()
-  email: string;
+  todoName: string;
 
   @Field()
-  age: number;
+  todoDone: boolean;
 }

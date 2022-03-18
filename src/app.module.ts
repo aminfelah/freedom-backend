@@ -3,8 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
-import { UserService } from './user/user.service';
-import { UserModule } from './user/user.module';
+import { TodoService } from './todo/todo.service';
+import { TodoModule } from './todo/todo.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 const url = process.env.MONGO_URL || 'localhost';
@@ -19,7 +19,7 @@ const url = process.env.MONGO_URL || 'localhost';
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql'
     }),
-    UserModule,
+    TodoModule,
   ],
 })
 export class AppModule {}

@@ -2,23 +2,23 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
-  name: String!
-  email: String!
-  age: Float!
+type Todo {
+  todoDate: String!
+  todoName: String!
+  todoDone: Boolean!
 }
 
 type Query {
-  users: [User!]!
-  user(email: String!): User!
+  todos: [Todo!]!
+  todo(todoName: String!): Todo!
 }
 
 type Mutation {
-  createUser(input: CreateUserInput!): User!
+  createTodo(input: CreateTodoInput!): Todo!
 }
 
-input CreateUserInput {
-  name: String!
-  email: String!
-  age: Float!
+input CreateTodoInput {
+  todoDate: String!
+  todoName: String!
+  todoDone: Boolean!
 }
