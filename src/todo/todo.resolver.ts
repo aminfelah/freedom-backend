@@ -1,7 +1,8 @@
 import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
-import { CreateTodoInput } from './todo.input';
+import { CreateTodoInput } from './dto/todo.input';
 import { TodoService } from './todo.service';
 import { Todo } from './todo.schema';
+import { UpdateTodoInput } from './dto/todo.update';
 
 @Resolver(() => Todo)
 export class TodoResolver {
@@ -11,13 +12,26 @@ export class TodoResolver {
   async createTodo(@Args('input') input: CreateTodoInput) {
     return this.todoService.create(input);
   }
+  @Mutation(() => Todo)
+  async updateTodo(@Args({name: 'filter'}) todoName: string,@Args({name: 'input'}) updateInput: UpdateTodoInput) {
+    return this.todoService.update({ todoName: todoName },updateInput);
+  }
+  @Mutation(() => Todo)
+  async todoDelete(@Args({name: 'filter'}) todoName: string) {
+    return this.todoService.deleteOne({ todoName: todoName });
+  }
 
   @Query(() => [Todo])
-  async todos() {
-    return this.todoService.find();
+  async allTodos() {
+    return this.todoService.findAll();
   }
   @Query(() => Todo)
-  async todo(@Args({name: 'todoName'}) todoName: string) {
+  async todoByName(@Args({name: 'todoName'}) todoName: string) {
     return this.todoService.findOne({ todoName: todoName });
   }
+  @Query(() => [Todo])
+  async todoByDone(@Args({name: 'todoDone'}) todoDone: boolean) {
+    return this.todoService.findMultiple({ todoDone: todoDone });
+  }
+  
 }
