@@ -19,6 +19,24 @@ services:
     restart: unless-stopped
     environment:
       MONGO_URL: mongodb
+  test:
+    container_name: server-test
+    image: server-test:1.0.0
+    build:
+      context: .
+      target: development
+      dockerfile: ./Dockerfile
+    command: npm run test:watch
+    ports:
+      - 3050:3050
+      - 9239:9239
+    networks:
+      - server-network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      MONGO_URL: mongodb
   mongodb:
     image: mongo:5.0.0
     container_name: server-mongodb

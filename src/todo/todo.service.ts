@@ -1,6 +1,6 @@
 
 import { Model, FilterQuery } from 'mongoose';
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Todo, TodoDocument } from './todo.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateTodoInput } from './dto/todo.input';
