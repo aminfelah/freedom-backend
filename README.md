@@ -1,73 +1,100 @@
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
+<div id="top"></div>
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/aminfelah">
+    <img src="https://media.discordapp.net/attachments/878701501239947314/954837195854868500/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+  <h3 align="center">Back-end api</h3>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  <p align="center">
+    A Basic Todo CRUD API !
+</div>
 
-## Description
+## Reproducing the API
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+To run this project just run the following on the root of the project:
 
-## Installation
+``` console
+docker-compose up -d dev mongodb
+```
+### Built With
 
-```bash
-$ npm install
+major frameworks/libraries and technologies used to bootstrap the todo api.
+
+* [Nestjs](https://nestjs.com/)
+* [Mongodb](https://www.mongodb.com/)
+* [GraphQl](https://graphql.org/)
+* [Docker](https://www.docker.com/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### GraphQl PlayGround
+<div align="center">
+http://localhost:3000/graphql
+</div>
+   <img src="https://media.discordapp.net/attachments/878701501239947314/954837667328196618/unknown.png?width=1249&height=612"  >
+   <hr />
+   
+## Possible GraphQl Queries and Mutations 
+
+  <br />
+
+
+| Action        | Type           | payload | arguments |
+| ------------- |:-------------:| ------------------ | ---------- |
+|  Add a Todo | Mutation |mutation createTodo($input: CreateTodoInput!) { <br />  createTodo(input: $input) { todoDate  <br /> todoName <br />   todoDone <br />  } <br /> } <br /> | { "input": { <br /> "todoDate": "18-03-2022", <br /> "todoName": "the todo name", <br />  "todoDone": true <br />  } <br /> } |
+| Get all Todos | Query | {  allTodos { <br />  todoDate <br />  todoName <br />  todoDone <br /> } <br /> } | None |
+| Get a Todo  | Query | {  todoByName(todoName :"make the backend") {  <br /> todoDate  <br /> todoName  <br />  todoDone  <br />  } }| None |
+| Modify a Todo   | Mutation | mutation updateTodo($filter:String!,$input: UpdateTodoInput!) { <br /> updateTodo(filter:$filter,input: $input) { <br />  todoDate <br />  todoName <br />  todoDone <br /> } <br /> } | {"filter": "the todo to Change",  <br /> "input": {  <br />  "todoName": "the todo to Update",  <br /> "todoDone":false  <br /> }  <br /> }  <br /> |
+| Delete a Todo | Mutation | mutation todoDelete($filter: String!) {  <br /> todoDelete(filter: $filter) {  <br />  todoDate  <br />  todoName <br /> todoDone  <br /> }  <br />} | {"filter": "the todo to Delete"} |
+
+
+## The Model Schema and The validation Pipes 
+
+
+``` sh
+@ObjectType()
+export class Todo extends Document {
+  @Field()
+  todoDate: string;
+  @IsNotEmpty()
+  @MinLength(3)
+  @MaxLength(99)
+  @IsString()
+  @Field()
+  todoName: string;
+  @IsBoolean()
+  @Field()
+  todoDone: boolean;
+}
+export type TodoDocument = Todo & Document;
 ```
 
-## Running the app
+## Basic Unit Tests using Jest 
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+ <img src="https://jestjs.io/fr/img/opengraph.png"  >
+ 
+to test the resolver update action example
+``` sh
+describe('updateTodo', () => {
+    it('should update the present todo', () => {
+      expect(
+        resolver.updateTodo('create my todo test', {
+          todoName: 'create my todo test',
+          todoDone: false,
+        }),
+      ).resolves.toContainEqual({
+        todoDate: '19-03-2022',
+        todoName: 'create my todo test',
+        todoDone: false,
+      });
+    });
+  });
 ```
+ 
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
