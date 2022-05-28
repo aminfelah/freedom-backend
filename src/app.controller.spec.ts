@@ -19,4 +19,9 @@ describe('AppController', () => {
       expect(appController.getHello()).toBe('Hello World!');
     });
   });
+  describe('root', () => {
+    it('should return "Greetings"', () => {
+      expect(appController.getGreetings()).toBe('Greetings from the other side');
+    });
+  });
 });
