@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   dev:
-    container_name: server-dev
+    container_name: server-freedom-dev
     image: server-dev:1.0.0
     build:
       context: .
@@ -20,13 +20,13 @@ services:
     environment:
       MONGO_URL: mongodb
   test:
-    container_name: server-test
+    container_name: server-freedom-test
     image: server-test:1.0.0
     build:
       context: .
       target: development
       dockerfile: ./Dockerfile
-    command: npm run test:watch
+    command: npm run test
     ports:
       - 3050:3050
       - 9239:9239
@@ -39,7 +39,7 @@ services:
       MONGO_URL: mongodb
   mongodb:
     image: mongo:5.0.0
-    container_name: server-mongodb
+    container_name: server-freedom-mongodb
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=pass12345
