@@ -1,4 +1,4 @@
-/*import { Test, TestingModule } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { CreateTodoInput } from './dto/todo.input';
 import { UpdateTodoInput } from './dto/todo.update';
 import { TodoResolver } from './todo.resolver';
@@ -47,7 +47,7 @@ describe('TodoResolver', () => {
       });
     });
   });
-  describe('todoallTodosByName', () => {
+  /*describe('todoallTodosByName', () => {
     it('should get all the todos', () => {
       expect(
         resolver.allTodos(
@@ -98,6 +98,5 @@ describe('TodoResolver', () => {
         todoDone: false,
       });
     });
-  });
+  });*/
 });
-*/
