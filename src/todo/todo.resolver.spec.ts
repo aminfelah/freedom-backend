@@ -47,7 +47,7 @@ describe('TodoResolver', () => {
       });
     });
   });
-  /*describe('todoallTodosByName', () => {
+  describe('todoallTodosByName', () => {
     it('should get all the todos', () => {
       expect(
         resolver.allTodos(
@@ -98,5 +98,5 @@ describe('TodoResolver', () => {
         todoDone: false,
       });
     });
-  });*/
+  });
 });
