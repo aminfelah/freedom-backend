@@ -8,5 +8,7 @@ export class AppService {
   greetings(): string {
     return 'Greetings from the other side';
   }
- 
+  abort(): string {
+    return 'Aborting Completed';
+  }
 }
