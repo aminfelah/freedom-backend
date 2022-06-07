@@ -36,6 +36,7 @@ major frameworks/libraries and technologies used to bootstrap the todo api.
 ### GraphQl PlayGround
 <div align="center">
 http://localhost:3000/graphql
+  one could argue it is the uart testing because it help us see the endpoint what are they exposing
 </div>
    <img src="https://media.discordapp.net/attachments/878701501239947314/954837667328196618/unknown.png?width=1249&height=612"  >
    <hr />
@@ -99,9 +100,21 @@ describe('updateTodo', () => {
  
  ## Basic Integeration Test 
  
+ testing the relation between the resolver and service because actually the resolver uses the services
+ 
+ <img src="https://media.discordapp.net/attachments/878701501239947314/983848992972636231/unknown.png"  >
+ 
  ## Basic End 2 End Tests using 
+ 
+ testing the server as a whole from E2E
  
  <img src="https://media.discordapp.net/attachments/878701501239947314/983846123770884156/unknown.png"  >
  <img src="https://media.discordapp.net/attachments/878701501239947314/983846262753329182/unknown.png"  >
  
-
+ # Deployement with CI/CD on ECS 
+ 
+ the Deployement on CI/CD using github to run the test, run the build on a new hash, and the deploymenet on aws 
+ 
+ <img src="https://media.discordapp.net/attachments/878701501239947314/983850390816718888/unknown.png"  >
+ 
+ <img src="https://media.discordapp.net/attachments/878701501239947314/983851232085049364/unknown.png"  >
